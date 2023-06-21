@@ -1,0 +1,57 @@
+PODS:
+  - ffmpeg-kit-ios-full (4.5.1)
+  - ffmpeg_kit_flutter_full (4.5.1):
+    - ffmpeg_kit_flutter_full/full (= 4.5.1)
+    - Flutter
+  - ffmpeg_kit_flutter_full/full (4.5.1):
+    - ffmpeg-kit-ios-full (= 4.5.1)
+    - Flutter
+  - Flutter (1.0.0)
+  - images_picker (0.0.1):
+    - Flutter
+    - ZLPhotoBrowser (= 4.2.5)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - video_player_avfoundation (0.0.1):
+    - Flutter
+  - ZLPhotoBrowser (4.2.5):
+    - ZLPhotoBrowser/Core (= 4.2.5)
+  - ZLPhotoBrowser/Core (4.2.5)
+
+DEPENDENCIES:
+  - ffmpeg_kit_flutter_full (from `.symlinks/plugins/ffmpeg_kit_flutter_full/ios`)
+  - Flutter (from `Flutter`)
+  - images_picker (from `.symlinks/plugins/images_picker/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
+
+SPEC REPOS:
+  trunk:
+    - ffmpeg-kit-ios-full
+    - ZLPhotoBrowser
+
+EXTERNAL SOURCES:
+  ffmpeg_kit_flutter_full:
+    :path: ".symlinks/plugins/ffmpeg_kit_flutter_full/ios"
+  Flutter:
+    :path: Flutter
+  images_picker:
+    :path: ".symlinks/plugins/images_picker/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/ios"
+  video_player_avfoundation:
+    :path: ".symlinks/plugins/video_player_avfoundation/ios"
+
+SPEC CHECKSUMS:
+  ffmpeg-kit-ios-full: 1e918caa885a00501ec1606c68a874d07d681705
+  ffmpeg_kit_flutter_full: 74713292f1ad354663b6e8fbf96a0af0ec1efa2c
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  images_picker: fa9364e3a7d3083c49f865fcfb2b9e7cdc574d3a
+  path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
+  video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
+  ZLPhotoBrowser: 4bfab86b851042e18d7f413284472aa68759626a
+
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+
+COCOAPODS: 1.11.3
