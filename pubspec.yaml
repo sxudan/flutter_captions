@@ -1,7 +1,7 @@
 name: flutter_captions
 description: A flutter library to add caption to a video.
 version: 0.0.1
-homepage: https://github.com/sxudan/flutter_captions
+repository: https://github.com/sxudan/flutter_captions
 
 environment:
   sdk: '>=2.19.6 <3.0.0'

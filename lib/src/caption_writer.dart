@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 class CaptionWriterDecoration {
   CaptionWriterDecoration(
-      {this.postion = CaptionWriterPostion.BottomCenter,
+      {this.postion = CaptionWriterPostion.bottomCenter,
       this.fontSize = 12,
       this.margins = const EdgeInsets.all(24),
       this.shadow = 0.5,
@@ -38,35 +38,35 @@ class CaptionWriterDecoration {
 }
 
 enum CaptionWriterPostion {
-  BottomLeft,
-  BottomCenter,
-  BottomRight,
-  CenterLeft,
-  Center,
-  CenterRight,
-  TopLeft,
-  TopCenter,
-  TopRight;
+  bottomLeft,
+  bottomCenter,
+  bottomRight,
+  centerLeft,
+  center,
+  centerRight,
+  topLeft,
+  topCenter,
+  topRight;
 
   int getValue() {
     switch (this) {
-      case BottomLeft:
+      case bottomLeft:
         return 1;
-      case BottomCenter:
+      case bottomCenter:
         return 2;
-      case BottomRight:
+      case bottomRight:
         return 3;
-      case CenterLeft:
+      case centerLeft:
         return 8;
-      case Center:
+      case center:
         return 10;
-      case CenterRight:
+      case centerRight:
         return 11;
-      case TopLeft:
+      case topLeft:
         return 4;
-      case TopCenter:
+      case topCenter:
         return 6;
-      case TopRight:
+      case topRight:
         return 7;
     }
   }
@@ -93,7 +93,7 @@ extension ColorX on Color {
 
 class CaptionWriter {
   CaptionWriter({this.decoration});
-  StreamController<int> _streamController = StreamController.broadcast();
+  final StreamController<int> _streamController = StreamController.broadcast();
   Stream<int> get timeStream => _streamController.stream;
 
   String _srtTimestamp(int ms) {
@@ -113,7 +113,6 @@ class CaptionWriter {
             '${i + 1}\n${_srtTimestamp(p.time.start)} --> ${_srtTimestamp(p.time.end)}\n${p.text}')
         .toList()
         .join('\n\n');
-    print(sub);
     return sub;
   }
 
@@ -130,6 +129,7 @@ class CaptionWriter {
 
   String _generateCommand(
       String videoInputPath, String subtitlePath, String outputPath) {
+    // ignore: prefer_collection_literals
     Map<String, dynamic> style = Map();
     decoration ??= CaptionWriterDecoration();
     style['Alignment'] = decoration!.postion.getValue();
@@ -180,23 +180,24 @@ class CaptionWriter {
     String sub = await _getSubtitlePath(param);
     String out = await _getVideoOutputPath(delete: true);
     String command = _generateCommand(videoInput.path, sub, out);
-    print(command);
     final Completer<String> completer = Completer<String>();
-    FFmpegKit.executeAsync(command, (session) async {
-      final code = await session.getReturnCode();
-      if (ReturnCode.isSuccess(code)) {
-        completer.complete(out);
-      } else {
-        completer.completeError(session.getOutput());
-      }
-      _streamController.add(0);
-    }, (log) {
-      print(log.getMessage());
-    }, (stats) {
-      if (stats.getTime() > 0) {
-        _streamController.add(stats.getTime());
-      }
-    });
+    FFmpegKit.executeAsync(
+        command,
+        (session) async {
+          final code = await session.getReturnCode();
+          if (ReturnCode.isSuccess(code)) {
+            completer.complete(out);
+          } else {
+            completer.completeError(session.getOutput());
+          }
+          _streamController.add(0);
+        },
+        (log) {},
+        (stats) {
+          if (stats.getTime() > 0) {
+            _streamController.add(stats.getTime());
+          }
+        });
     return completer.future;
   }
 
